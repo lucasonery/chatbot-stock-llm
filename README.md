@@ -22,25 +22,28 @@ Projeto de ETL, API e Bot do Telegram para ingestão, consulta e análise de dad
 >  **Atenção:** a pasta `stocks/` deve estar na raiz do projeto com os arquivos CSV para importação no código.
 
 .
-├── app/
+├── app/ # Código principal da aplicação
 │ ├── core/ # Conexão e inicialização do banco
 │ ├── repository/ # Queries SQL e persistência
 │ ├── services/ # Regras de negócio e validação
-│ ├── batch/ # Importador em lotes
+│ ├── batch/ # Importador em lotes de CSVs
 │ ├── main.py # API FastAPI
+│ └── init.py
 │
 ├── bot/ # Bot do Telegram
 │ ├── handlers/ # Handlers de cada comando
 │ ├── states.py # Estados de conversas
-│ └── telegram_bot.py
+│ ├── telegram_bot.py # Ponto de entrada do Bot
+│ └── init.py
 │
 ├── data/ # Banco SQLite (persistência)
 │ └── aboda.db
 │
-├── stocks/ #  Pasta obrigatória com CSVs
-├── teste-bot-csv/ #  Pasta com CSVs para enviar como teste via Telegram direto com o Bot
+├── stocks/ # Pasta obrigatória com CSVs de ativos
+├── teste-bot-csv/ # Pasta de CSVs de exemplo para enviar no Bot
 │ ├── BR.csv
 │ └── FANG.csv
+│
 ├── Dockerfile
 ├── docker-compose.yml
 ├── requirements.txt
@@ -50,7 +53,7 @@ Projeto de ETL, API e Bot do Telegram para ingestão, consulta e análise de dad
 
 ## Rodando com Docker
 
-###  Passo 1 — Build das imagens
+####  Passo 1 — Build das imagens
 
 builda a imagem base do projeto: 
 docker build . -t aboda  
@@ -58,20 +61,23 @@ docker build . -t aboda
 forma recomendada para múltiplos serviços:
 docker compose build --no-cache
 
-### Passo 2 — Subir todos os serviços
+#### Passo 2 — Subir todos os serviços
 docker compose up -d
 
 Isso irá rodar:
-API em http://127.0.0.1:8000
-Batch (importador de CSVs em lote)
-Bot do Telegram (@desafio_aboda_bot)
+- API em http://127.0.0.1:8000
+- Batch (importador de CSVs em lote)
+- Bot do Telegram (@desafio_aboda_bot)
 
-Rodando serviços separadamente
+#### Rodando serviços separadamente
 Se quiser subir apenas alguns serviços:
 
-Subir apenas a API: docker compose up api
-Subir apenas o Bot: docker compose up bot
-Rodar o Batch manualmente: docker compose run batch
+- Subir apenas a API: 
+  - docker compose up api
+- Subir apenas o Bot:
+  - docker compose up bot
+- Rodar o Batch manualmente:
+  - docker compose run batch
 
 ## Bot do Telegram
 O bot está disponível em: @desafio_aboda_bot
@@ -92,8 +98,8 @@ Exemplo: enviar BR.csv com legenda BR.
 
 ## NLP e Planos Futuros
 Embora não fosse exigido no desafio, foi implementada uma integração com Groq LLM para permitir consultas em linguagem natural, como:
-"Qual foi o maior volume da BR em 2019?"
-"Mostre métricas consolidadas da FANG entre janeiro e março de 2020."
+- "Qual foi o maior volume da BR em 2019?"
+- "Mostre métricas consolidadas da FANG entre janeiro e março de 2020."
 
 Evolução do Bot :
 1. Implementar TF-IDF para extrair termos relevantes localmente.
