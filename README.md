@@ -22,26 +22,26 @@ Projeto de ETL, API e Bot do Telegram para ingestão, consulta e análise de dad
 >  **Atenção:** a pasta `stocks/` deve estar na raiz do projeto com os arquivos CSV para importação no código.
 
 .
-- app/ # Código principal da aplicação
-  - core/ # Conexão e inicialização do banco
-  - repository/ # Queries SQL e persistência
-  - services/ # Regras de negócio e validação
-  - batch/ # Importador em lotes de CSVs
-  - main.py # API FastAPI
+- app/ Código principal da aplicação
+  - core/ Conexão e inicialização do banco
+  - repository/ Queries SQL e persistência
+  - services/ Regras de negócio e validação
+  - batch/ Importador em lotes de CSVs
+  - main.py/ API FastAPI
   - init.py
 
-- bot/ # Bot do Telegram
-  - handlers/ # Handlers de cada comando
-  - states.py # Estados de conversas
-  - telegram_bot.py # Ponto de entrada do Bot
+- bot/ Bot do Telegram
+  - handlers/ Handlers de cada comando
+  - states.py/ Estados de conversas
+  - telegram_bot.py/ Ponto de entrada do Bot
   - init.py
 
--  # Banco SQLite (persistência)
+-  Banco SQLite (persistência)
   - aboda.db
 
-- stocks/ # Pasta obrigatória com CSVs de ativos
+- stocks/ Pasta obrigatória com CSVs de ativos
 
-- teste-bot-csv/ # Pasta de CSVs de exemplo para enviar no Bot
+- teste-bot-csv/ Pasta de CSVs de exemplo para enviar no Bot
   - BR.csv
   - FANG.csv
 
