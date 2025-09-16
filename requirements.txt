@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+pydantic
+pandas
+python-multipart
+python-telegram-bot==20.3
+requests
+openpyxl
+python-dotenv
+groq

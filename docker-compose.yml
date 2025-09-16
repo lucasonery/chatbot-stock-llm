@@ -1,0 +1,37 @@
+version: "3.9"
+
+services:
+  api:
+    build: .
+    container_name: desafio-aboda-api
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+      - ./data:/app/data   # persistência para o banco
+    environment:
+      - API_URL=http://api:8000
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+
+  batch:
+    build: .
+    container_name: desafio-aboda-batch
+    volumes:
+      - .:/app
+      - ./data:/app/data
+    depends_on:
+      - api
+    command: python -m app.batch.import_csvs
+
+  bot:
+    build: .
+    container_name: desafio-aboda-bot
+    volumes:
+      - .:/app
+    environment:
+      - API_URL=http://api:8000
+      - TELEGRAM_TOKEN=${TELEGRAM_TOKEN}
+      - GROQ_API_KEY=${GROQ_API_KEY}
+    depends_on:
+      - api
+    command: python -m bot.telegram_bot
