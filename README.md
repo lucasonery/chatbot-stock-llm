@@ -114,10 +114,9 @@ Variáveis de ambiente configuradas em .env:
 
 env
 - chave da API do Telegram
-TELEGRAM_TOKEN=8088387091:AAEZs-vpkT_0nYbDqjAQ30ed1S258rf8N7Y
+TELEGRAM_TOKEN = você deve criar a sua
 
 - chave da API do Groq
-GROQ_API_KEY=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
-
+GROQ_API_KEY = você deve criar a sua
 - endereço da API (pode mudar no docker)
 API_URL=http://127.0.0.1:8000
