@@ -1,4 +1,4 @@
-# Desafio Aboda
+# Chatbot LLM
 
 Projeto de ETL, API e Bot do Telegram para ingestão, consulta e análise de dados financeiros a partir de arquivos CSV de ativos.
 
